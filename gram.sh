@@ -64,6 +64,7 @@ sleep 5
 
 #pihole
 curl -sSL https://install.pi-hole.net | bash
+echo " "
 echo -e "${GREEN}Change your Pihole webpage password...${RESET}"
 pihole -a -p
 echo -e "${GREEN}Visit your Pihole at http://LOCALHOSTIP/admin.${RESET}"
