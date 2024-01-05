@@ -59,22 +59,25 @@ fi
 
 #main pihole/unbound installation
 echo -e "${GREEN}Installing Pihole/Unbound...${RESET}"
+sleep 5
 
-cd ~
-mkdir pihole
-cd pihole
+#pihole
+curl -sSL https://install.pi-hole.net | bash
+echo -e "${GREEN}Change your Pihole webpage password...${RESET}"
+pihole -a -p
+echo -e "${GREEN}Visit your Pihole at http://LOCALHOSTIP/admin.${RESET}"
+sleep 5
 
-echo -e "${GREEN}Downloading Docker Compose file...${RESET}"
-wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/pihole-compose.yml
-echo -e "${GREEN}Enter a password for Pi-hole's web interface:${RESET}"
-read -s PIHOLE_PASSWORD
-echo "PIHOLE_WEBPASSWORD=$PIHOLE_PASSWORD" > .env
+#unbound
+echo -e "${GREEN}Installing Unbound..."
+sleep 3
+sudo apt-get install -y unbound 
+wget -O /etc/unbound/unbound.conf.d/pi-hole.conf https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/unbound.txt
+sudo service unbound restart
+sudo service unbound status | grep Active
 
-echo -e "${GREEN}Starting Pihole/Unbound...${RESET}"
-sudo docker-compose up -d
-echo " "
-sudo docker ps -a
 echo -e "${GREEN}Finished installing Octoprint and Pihole/Unbound.${RESET}"
+
 
 
 
