@@ -50,7 +50,7 @@ if [[ $e0 -eq 0 ]]; then
 	e1=$?
 	if [[ $e1 -eq 0 ]]; then
 		echo -e "${GREEN}Octoprint succesfully installed.${RESET}"
-		
+  		sleep 3	
 	fi
 
 else
