@@ -38,4 +38,8 @@ services:
 
 volumes:
   octoprint:
-   - /home/pi/octoprint/elegoo:/home/octoprint
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pi/octoprint/elegoo
+      o: bind
