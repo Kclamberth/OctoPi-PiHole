@@ -41,5 +41,5 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/pi/octoprint/elegoo
+      device: ${MAIN_DIRECTORY}
       o: bind
