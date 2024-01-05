@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" # Only required for DHCP
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
+      DNS1: 127.0.0.1#5335 # Unbound DNS resolver
+      DNS2: no # No secondary DNS
+    volumes:
+       - './pihole:/etc/pihole'
+       - './dnsmasq.d:/etc/dnsmasq.d'
+    restart: unless-stopped
+
+  unbound:
+    container_name: unbound
+    image: mvance/unbound:latest
+    volumes:
+      - './unbound:/opt/unbound/etc/unbound/'
+    ports:
+      - "5335:5335/udp"
+      - "5335:5335/tcp"
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
+
