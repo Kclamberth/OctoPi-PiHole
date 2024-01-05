@@ -5,8 +5,8 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
+      - "5353:53/tcp"
+      - "5353:53/udp"
       - "67:67/udp" # Only required for DHCP
       - "80:80/tcp"
       - "443:443/tcp"
