@@ -71,7 +71,7 @@ echo -e "${GREEN}Visit your Pihole at http://LOCALHOSTIP/admin.${RESET}"
 sleep 5
 
 #unbound
-echo -e "${GREEN}Installing Unbound...{RESET}"
+echo -e "${GREEN}Installing Unbound...${RESET}"
 sleep 3
 sudo apt-get install -y unbound 
 wget -O /etc/unbound/unbound.conf.d/pi-hole.conf https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/unbound.txt
