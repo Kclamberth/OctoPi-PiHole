@@ -37,7 +37,7 @@ if [[ $e0 -eq 0 ]]; then
 	cd octoprint
 	mkdir elegoo
 	cd elegoo
-	mainDirectory=$( pwd )
+	export MAIN_DIRECTORY=$(pwd)
 	cd ..
 	wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/docker-compose.yml 
 	echo " "
