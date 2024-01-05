@@ -42,7 +42,7 @@ if [[ $e0 -eq 0 ]]; then
 	cd ..
 	wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/docker-compose.yml 
 	echo " "
-	echo -e "${GREEN}Starting Octoprint...${RESET}"
+	echo -e "${GREEN}Creating Octoprint...${RESET}"
 	sleep 3
 	sudo docker-compose up -d 
 	#permissions for octoprint
