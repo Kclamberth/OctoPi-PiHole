@@ -14,7 +14,7 @@ services:
       TZ: 'America/Chicago'
       WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
       DNS1: 127.0.0.1#5335 # Unbound DNS resolver
-      DNS2: no # No secondary DNS
+      DNS2: '' # No secondary DNS
     volumes:
        - './pihole:/etc/pihole'
        - './dnsmasq.d:/etc/dnsmasq.d'
