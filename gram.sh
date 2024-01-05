@@ -50,7 +50,7 @@ if [[ $e0 -eq 0 ]]; then
 	sudo docker-compose restart
 	e1=$?
 	if [[ $e1 -eq 0 ]]; then
-		echo -e "${GREEN}Octoprint succesfully installed.${RESET}"
+		echo -e "${GREEN}Octoprint successfully installed.${RESET}"
   		sleep 3	
 	fi
 
@@ -80,7 +80,7 @@ sudo service unbound status | grep Active
 
 echo " "
 echo -e "${GREEN}Finished installing Octoprint and Pihole/Unbound.${RESET}"
-echo -e "${GREEN}Reach Octoprint at http://LOCALHOSTIP:4000, and Pihole at http://LOCALHOSTIP/admin ${RESET}"
+echo -e "${GREEN}Reach Octoprint at http://LOCALHOSTIP:4000, and Pihole at http://LOCALHOSTIP/admin.${RESET}"
 
 
 
