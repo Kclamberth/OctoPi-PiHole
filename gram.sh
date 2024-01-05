@@ -78,6 +78,7 @@ wget -O /etc/unbound/unbound.conf.d/pi-hole.conf https://raw.githubusercontent.c
 sudo service unbound restart
 sudo service unbound status | grep Active
 
+echo " "
 echo -e "${GREEN}Finished installing Octoprint and Pihole/Unbound.${RESET}"
 
 
