@@ -18,7 +18,7 @@ echo " "
 #install docker
 echo -e "${GREEN}Installing Docker and Docker compose...${RESET}"
 sleep 3
-sudo apt install curl
+sudo apt-get install -y curl
 sudo apt-get install -y docker
 sudo apt-get install -y docker-compose
 
