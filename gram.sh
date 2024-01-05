@@ -68,7 +68,7 @@ echo -e "${GREEN}Downloading Docker Compose file...${RESET}"
 wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/pihole-compose.yml
 echo -e "${GREEN}Enter a password for Pi-hole's web interface:${RESET}"
 read -s PIHOLE_PASSWORD
-export PIHOLE_WEBPASSWORD=$PIHOLE_PASSWORD
+echo "PIHOLE_WEBPASSWORD=$PIHOLE_PASSWORD" > .env
 
 echo -e "${GREEN}Starting Pihole/Unbound...${RESET}"
 sudo docker-compose up -d
