@@ -28,6 +28,7 @@ echo -e "${GREEN}VERSIONS:${RESET}"
 echo -e "${GREEN}$( docker --version && docker-compose --version )${RESET}"
 e0=$?
 
+#main octoprint installation
 if [[ $e0 -eq 0 ]]; then
 	echo " "
 	echo -e "${GREEN}Docker and Docker compose successfully installed.${RESET}"
@@ -46,7 +47,6 @@ if [[ $e0 -eq 0 ]]; then
 	#permissions for octoprint
 	sudo chmod -R 777 elegoo
 	sudo docker-compose restart
-	sudo docker ps -a
 	e1=$?
 	if [[ $e1 -eq 0 ]]; then
 		echo -e "${GREEN}Octoprint succesfully installed.${RESET}"
@@ -57,6 +57,7 @@ else
 	echo -e "${RED}Docker or Docker compose FAILED install!${RESET}"
 fi
 
+#main pihole/unbound installation
 echo -e "${GREEN}Installing Pihole/Unbound...${RESET}"
 
 cd ~
@@ -71,6 +72,9 @@ export PIHOLE_WEBPASSWORD=$PIHOLE_PASSWORD
 
 echo -e "${GREEN}Starting Pihole/Unbound...${RESET}"
 sudo docker-compose up -d
+echo " "
+sudo docker ps -a
+echo -e "${GREEN}Finished installing Octoprint and Pihole/Unbound.${RESET}"
 
 
 
