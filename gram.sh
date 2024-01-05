@@ -80,6 +80,7 @@ sudo service unbound status | grep Active
 
 echo " "
 echo -e "${GREEN}Finished installing Octoprint and Pihole/Unbound.${RESET}"
+echo -e "${GREEN}Reach Octoprint at http://LOCALHOSTIP:4000, and Pihole at http://LOCALHOSTIP/admin ${RESET}"
 
 
 
