@@ -34,7 +34,7 @@ cleanup(){
 	wait $detect_pid 2>/dev/null
 	echo -e "${GREEN}Stream terminated.${RESET}"
 	echo " "
-	echo -e "${GREEN}Did the script fix the mjpeg issue? (y/n)${RESET}"
+	echo -e "${YELLOW}Did the script fix the mjpeg issue? (y/n)${RESET}"
 	read -r answer
 	echo " "
 
