@@ -13,13 +13,14 @@ YELLOW='\e[33m'
 echo -e "${YELLOW}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
 echo -e "${YELLOW}Octoprint's Docker compose will be updated and mjpeg will be ran on the host device separately.${RESET}"
 echo " "
-echo -ne "${GREEN}Starting in 10..."
-for i in {9..1}
+echo -ne "${GREEN}Starting in 15..."
+for i in {14..1}
 do
 	sleep 1
  	echo -ne "\rStarting in '$i'..."
 done
 echo -ne "\rStarting...${RESET}"
+echo " "
 
 cleanup(){
 	echo " "
