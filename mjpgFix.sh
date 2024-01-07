@@ -1,15 +1,18 @@
 #!/bin/bash
 
+#ensure script is run as root
 if [[ $EUID -ne 0 ]]; then
 	echo "This script must be run as root."
 	exit 1
 fi
 
+#color codes
 GREEN='\e[32m'
 RESET='\e[0m'
 RED='\e[31m'
 YELLOW='\e[33m'
 
+#MOTD
 echo -e "${YELLOW}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
 echo -e "${YELLOW}Octoprint's Docker compose will be updated and mjpeg will be ran on the host device separately.${RESET}"
 echo " "
@@ -19,9 +22,11 @@ do
 	sleep 1
  	echo -ne "\rStarting in $i..."
 done
-echo -ne "\rStarting...					${RESET}"
+echo -ne "\r\033[K" #Clear line
+echo -e "\rStarting...${RESET}"
 echo " "
 
+#Used to properly kill stream, and to add it to boot sequence if desired by user
 cleanup(){
 	echo " "
 	echo -e "${GREEN}Terminating stream...${RESET}"
