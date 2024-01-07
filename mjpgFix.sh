@@ -23,6 +23,7 @@ cleanup(){
 
 	if [[ "$answer" = "y" ]]; then
 		echo -e "${GREEN}Pogchamp. Editing the script to run stream on startup...${RESET}"
+  		sleep 5
 		wget -O /etc/systemd/system/mjpgstreamer.service https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/systemdBoot
 		sudo systemctl daemon-reload
 		sudo systemctl enable mjpgstreamer.service
@@ -35,7 +36,7 @@ cleanup(){
 }
 #update docker-compose.yml for octoprint
 echo -e "${GREEN}Updating Octoprint docker-compose.yml${RESET}"
-sleep 3
+sleep 5
 wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/docker-compose.yml
 sudo docker stop $(docker ps -q)
 mv docker-compose.yml /home/supergraham/octoprint/docker-compose.yml
@@ -44,7 +45,7 @@ echo " "
 
 #update system & install dependencies
 echo -e "${GREEN}Updating System & installing dependencies...${RESET}"
-sleep 3
+sleep 5
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install git -y
 sudo apt-get install v4l-utils -y
@@ -58,7 +59,7 @@ cd mjpg-streamer
 cd mjpg-streamer-experimental
 
 echo -e "${GREEN}Compiling...${RESET}"
-sleep 3
+sleep 5
 #compile
 make
 sudo make install
@@ -66,7 +67,7 @@ echo " "
 
 #run stream
 echo -e "${GREEN}Starting stream...${RESET}"
-sleep 3
+sleep 5
 /usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www" & detect_pid=$!
 
 trap cleanup SIGINT
