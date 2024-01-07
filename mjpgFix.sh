@@ -9,9 +9,9 @@ GREEN='\e[32m'
 RESET='\e[0m'
 RED='\e[31m'
 
-echo "${GREEN}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
-echo "${GREEN}Octoprint's Docker compose will be updated and mjpeg will be ran on the host device separately.${RESET}"
-echo "${GREEN}Starting...${RESET}"
+echo -e "${GREEN}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
+echo -e "${GREEN}Octoprint's Docker compose will be updated and mjpeg will be ran on the host device separately.${RESET}"
+echo -e "${GREEN}Starting...${RESET}"
 sleep 5
 
 cleanup(){
