@@ -47,6 +47,7 @@ echo -e "${GREEN}Updating System & installing dependencies...${RESET}"
 sleep 3
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install git -y
+sudo apt-get install v4l-utils -y
 git clone https://github.com/jacksonliam/mjpg-streamer
 sudo apt-get install cmake libjpeg8-dev -y
 sudo apt-get install gcc g++ -y
