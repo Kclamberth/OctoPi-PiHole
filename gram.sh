@@ -6,7 +6,7 @@ RESET='\e[0m'
 RED='\e[31m'
 
 #run from home directory
-cd /home/pi
+cd /home/supergraham
 
 #update system
 echo -e "${GREEN}Updating System...${RESET}"
