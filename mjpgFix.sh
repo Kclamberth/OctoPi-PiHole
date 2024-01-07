@@ -17,9 +17,9 @@ echo -ne "${GREEN}Starting in 15..."
 for i in {14..1}
 do
 	sleep 1
- 	echo -ne "\rStarting in '$i'..."
+ 	echo -ne "\rStarting in $i..."
 done
-echo -ne "\rStarting...${RESET}"
+echo -ne "\rStarting...					${RESET}"
 echo " "
 
 cleanup(){
