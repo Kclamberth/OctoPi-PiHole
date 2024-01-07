@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [[ $EUID -ne 0 ]]; then
 	echo "This script must be run as root."
 	exit 1
@@ -9,6 +8,11 @@ fi
 GREEN='\e[32m'
 RESET='\e[0m'
 RED='\e[31m'
+
+echo "${GREEN}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
+echo "${GREEN}Octoprint's Docker compose will be updated and mjpeg will be ran on the host device separately.${RESET}"
+echo "${GREEN}Starting...${RESET}"
+sleep 5
 
 cleanup(){
 	echo " "
@@ -23,7 +27,7 @@ cleanup(){
 
 	if [[ "$answer" = "y" ]]; then
 		echo -e "${GREEN}Pogchamp. Editing the script to run stream on startup...${RESET}"
-  		sleep 5
+		sleep 5
 		wget -O /etc/systemd/system/mjpgstreamer.service https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/systemdBoot
 		sudo systemctl daemon-reload
 		sudo systemctl enable mjpgstreamer.service
@@ -71,4 +75,5 @@ sleep 5
 /usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www" & detect_pid=$!
 
 trap cleanup SIGINT
+
 
