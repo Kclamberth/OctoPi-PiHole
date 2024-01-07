@@ -1,23 +1,72 @@
 #!/bin/bash
 
-sudo apt-get update && sudo apt-get upgrade -y
 
-sudo apt-get install git -y
+if [[ $EUID -ne 0 ]]; then
+	echo "This script must be run as root."
+	exit 1
+fi
 
-git clone https://github.com/jacksonliam/mjpg-streamer
+GREEN='\e[32m'
+RESET='\e[0m'
+RED='\e[31m'
 
-sudo apt-get install cmake libjpeg8-dev -y
+cleanup(){
+	echo " "
+	echo -e "${GREEN}Terminating stream...${RESET}"
+	kill $detect_pid
+	wait $detect_pid 2>/dev/null
+	echo -e "${GREEN}Stream terminated.${RESET}"
+	echo " "
+	echo -e "${GREEN}Did the script fix the mjpeg issue? (y/n)${RESET}"
+	read -r answer
+	echo " "
 
-sudo apt-get install gcc g++ -y
-
-cd mjpg-streamer
-
-cd mjpg-streamer-experimental
-
-make
-
-sudo make install
-
+	if [[ "$answer" = "y" ]]; then
+		echo -e "${GREEN}Pogchamp. Editing the script to run stream on startup...${RESET}"
+		wget -O /etc/systemd/system/mjpgstreamer.service https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/systemdBoot
+		sudo systemctl daemon-reload
+		sudo systemctl enable mjpgstreamer.service
+		sudo systemctl start mjpgstreamer.service
+		echo " "
+		echo -e "${GREEN}Check status of stream via 'sudo systemctl status mjpgstreamer.service'${RESET}"
+	else
+		echo -e "${RED}Abort mission.${RESET}"
+	fi
+}
+#update docker-compose.yml for octoprint
+echo -e "${GREEN}Updating Octoprint docker-compose.yml${RESET}"
+sleep 3
+wget -O docker-compose.yml https://raw.githubusercontent.com/Kclamberth/OctoPi-PiHole/main/docker-compose.yml
+sudo docker stop $(docker ps -q)
+mv docker-compose.yml /home/supergraham/octoprint/docker-compose.yml
+sudo docker compose up -d 
 echo " "
 
-/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 640x480 -d /dev/video0 -f 24 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www" 
+#update system & install dependencies
+echo -e "${GREEN}Updating System & installing dependencies...${RESET}"
+sleep 3
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install git -y
+git clone https://github.com/jacksonliam/mjpg-streamer
+sudo apt-get install cmake libjpeg8-dev -y
+sudo apt-get install gcc g++ -y
+echo " "
+
+#move to correct directory
+cd mjpg-streamer
+cd mjpg-streamer-experimental
+
+echo -e "${GREEN}Compiling...${RESET}"
+sleep 3
+#compile
+make
+sudo make install
+echo " "
+
+#run stream
+echo -e "${GREEN}Starting stream...${RESET}"
+sleep 3
+/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www" & detect_pid=$!
+
+trap cleanup SIGINT
+
