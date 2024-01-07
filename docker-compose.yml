@@ -9,9 +9,9 @@ services:
     devices:
     # use `python -m serial.tools.miniterm` to see what the name is of the printer, this requires pyserial
       - /dev/ttyUSB0:/dev/ttyACM0
-      #- /dev/video0:/dev/video0
+      - /dev/video0:/dev/video0
     volumes:
-     - /home/pi/octoprint/elegoo:/home/octoprint
+     - /home/supergraham/octoprint/elegoo:/home/octoprint
     # uncomment the lines below to ensure camera streaming is enabled when
     # you add a video device
     environment:
