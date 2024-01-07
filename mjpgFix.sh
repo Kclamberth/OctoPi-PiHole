@@ -84,5 +84,5 @@ sleep 5
 
 trap cleanup SIGINT
 echo " "
-echo "${YELLOW}Test the stream via http://ipAddress:8080. Once done, press ctrl+c (terminate) to move on.${RESET}"
+echo -e "${YELLOW}Test the stream via http://ipAddress:8080. Once done, press ctrl+c (terminate) to move on.${RESET}"
 wait $detect_pid
