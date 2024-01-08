@@ -85,7 +85,7 @@ echo " "
 #run stream
 echo -e "${GREEN}Starting stream...${RESET}"
 sleep 5
-/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www" & detect_pid=$!
+/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8160 -w /usr/local/share/mjpg-streamer/www" & detect_pid=$!
 
 trap cleanup SIGINT
 echo " "
