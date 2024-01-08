@@ -46,7 +46,7 @@ cleanup(){
 		sudo systemctl enable mjpgstreamer.service
 		sudo systemctl start mjpgstreamer.service
 		echo " "
-		echo -e "${GREEN}Check status of stream via 'sudo systemctl status mjpgstreamer.service'${RESET}"
+		echo -e "${GREEN}Complete. Check status of stream via 'sudo systemctl status mjpgstreamer.service'${RESET}"
 	else
 		echo -e "${RED}Abort mission.${RESET}"
 	fi
