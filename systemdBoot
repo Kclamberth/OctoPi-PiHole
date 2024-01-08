@@ -3,7 +3,7 @@ Description=MJPG Streamer Service
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8080 -w /usr/local/share/mjpg-streamer/www"
+ExecStart=/usr/local/bin/mjpg_streamer -i "input_uvc.so -r 1920x1080 -d /dev/video0 -f 30 -q 80" -o "output_http.so -p 8160 -w /usr/local/share/mjpg-streamer/www"
 Type=simple
 Restart=on-failure
 User=pi
