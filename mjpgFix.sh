@@ -16,12 +16,12 @@ YELLOW='\e[33m'
 echo -e "${YELLOW}This script will attempt to fix mjpeg, without altering anything related to PiHole/Unbound.${RESET}"
 echo -e "${YELLOW}Follow the prompts exactly, without typos or capital letters.${RESET}"
 echo " "
-echo -ne "${GREEN}Starting in 15..."
-for i in {14..1}
-do
-	sleep 1
- 	echo -ne "\rStarting in $i..."
-done
+#echo -ne "${GREEN}Starting in 15..."
+#for i in {14..1}
+#do
+	#sleep 1
+ 	#echo -ne "\rStarting in $i..."
+#done
 echo -ne "\r\033[K" #Clear line
 echo -e "\rStarting...${RESET}"
 echo " "
